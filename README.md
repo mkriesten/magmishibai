@@ -1,6 +1,8 @@
 # magmishibai
 
-> virtual kamishibai board by mkr
+> digital kamishibai board by mkr
+This application is currently being built. It's my first ever GitHub project.
+magmishibai consists of nuxt.js and bootstrap-vue so far. Data is still hardcoded into the store :)
 
 ## Build Setup
 
@@ -21,4 +23,5 @@ $ npm run generate
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 # magmishibai
+
 # magmishibai
