@@ -14,6 +14,7 @@
           :headline="ticket.headline"
           :done="ticket.done"
           :ticket="ticket"
+          :text="ticket.text"
         />
       </b-card-group>
     </b-row>

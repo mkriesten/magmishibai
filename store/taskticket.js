@@ -4,6 +4,7 @@ export const state = () => ({
     {
       taskId: 1,
       headline: 'Write Tests',
+      text: 'Don\'t be like me. Do yourself a favor and write testcases before writing code',
       done: true
     },
     {
