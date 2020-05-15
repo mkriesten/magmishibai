@@ -4,9 +4,7 @@
       <b-col>
         <h1>magmishibai</h1>
       </b-col>
-      <TaskContainer
-        :ticket-store="tickets"
-      />
+      <TaskContainer />
     </b-row>
   </b-container>
 </template>
@@ -17,11 +15,6 @@ import TaskContainer from '@/components/TaskContainer/TaskContainer'
 export default {
   components: {
     TaskContainer
-  },
-  computed: {
-    tickets () {
-      return this.$store.state.taskticket
-    }
   }
 }
 </script>

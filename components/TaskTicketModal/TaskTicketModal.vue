@@ -3,7 +3,7 @@
     <p
       class="my-4"
     >
-      {{ text }}
+      {{ description }}
     </p>
   </b-modal>
 </template>
@@ -12,14 +12,14 @@
 export default {
   props: {
     taskId: {
-      type: Number,
+      type: String,
       required: true
     },
     headline: {
       type: String,
       required: true
     },
-    text: {
+    description: {
       type: String,
       required: true
     }

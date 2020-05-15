@@ -2,19 +2,22 @@
   <b-container fluid class="kamishibai-section">
     <b-row>
       <b-col>
-        <h2>{{ ticketStore.cadence }} Tickets</h2>
+        <h2>Tickets</h2>
+      </b-col>
+      <b-col>
+        <AddButton />
       </b-col>
     </b-row>
     <b-row>
       <b-card-group columns>
         <TaskTicket
-          v-for="ticket in ticketStore.all"
+          v-for="ticket in tickets.all"
           :key="ticket.taskId"
           :task-id="ticket.taskId"
           :headline="ticket.headline"
           :done="ticket.done"
           :ticket="ticket"
-          :text="ticket.text"
+          :description="ticket.description"
         />
       </b-card-group>
     </b-row>
@@ -23,14 +26,15 @@
 
 <script>
 import TaskTicket from '@/components/TaskTicket/TaskTicket'
+import AddButton from '@/components/AddButton/AddButton'
 export default {
   components: {
-    TaskTicket
+    TaskTicket,
+    AddButton
   },
-  props: {
-    ticketStore: {
-      type: Object,
-      required: true
+  computed: {
+    tickets () {
+      return this.$store.state.taskticket
     }
   }
 }

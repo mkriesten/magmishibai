@@ -2,12 +2,12 @@
   <svg
     v-if="done"
     class="bi bi-check-circle taskbutton taskbutton-done"
-    width="1em"
-    height="1em"
+    width="1.1em"
+    height="1.1em"
     viewBox="0 0 16 16"
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
-    @click="toggleStatus(taskId)"
+    @click="toggle(taskId)"
   >
     <path
       fill-rule="evenodd"
@@ -23,23 +23,23 @@
   <svg
     v-else
     class="bi bi-circle-fill taskbutton taskbutton-open"
-    width="1em"
-    height="1em"
+    width="1.1em"
+    height="1.1em"
     viewBox="0 0 16 16"
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
-    @click="toggleStatus(taskId)"
+    @click="toggle(taskId)"
   >
     <circle cx="8" cy="8" r="8" />
   </svg>
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 export default {
   props: {
     taskId: {
-      type: Number,
+      type: String,
       required: true
     },
     done: {
@@ -47,21 +47,12 @@ export default {
       required: true
     }
   },
-  computed: {
-    ...mapGetters('taskticket', ['getTaskTicketById'])
-  },
   methods: {
-    toggleStatus (id) {
-      // get task from backend
-      const task = this.getTaskTicketById(id)
-      // set task we are going to work on
-      this.$store.commit('taskticket/setCurrentTask', task)
+    toggle (id) {
       // toggle done / undone
-      task.done
-        ? this.$store.commit('taskticket/toggleStatus', false)
-        : this.$store.commit('taskticket/toggleStatus', true)
+      this.toggleStatus(id)
     },
-    ...mapMutations(['taskticket/setCurrentTask', 'taskticket/toggle'])
+    ...mapMutations('taskticket', ['toggleStatus'])
   }
 }
 </script>
