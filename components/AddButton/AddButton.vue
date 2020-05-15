@@ -9,9 +9,21 @@
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z" clip-rule="evenodd" />
-      <path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z" clip-rule="evenodd" />
-      <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd" />
+      <path
+        fill-rule="evenodd"
+        d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z"
+        clip-rule="evenodd"
+      />
+      <path
+        fill-rule="evenodd"
+        d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z"
+        clip-rule="evenodd"
+      />
+      <path
+        fill-rule="evenodd"
+        d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z"
+        clip-rule="evenodd"
+      />
     </svg>
     <b-modal
       id="add-modal"
@@ -52,34 +64,34 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid'
-import { mapMutations } from 'vuex'
+import { v4 as uuidv4 } from "uuid"
+import { mapMutations } from "vuex"
 export default {
-  data () {
+  data() {
     return {
       task: {
         taskId: undefined,
-        headline: '',
-        description: '',
-        done: false
+        headline: "",
+        description: "",
+        done: false,
       },
-      nameState: null
+      nameState: null,
     }
   },
   methods: {
-    ...mapMutations('taskticket', ['addTodo']),
+    ...mapMutations("taskticket", ["addTodo"]),
 
-    checkFormValidity () {
+    checkFormValidity() {
       const valid = this.$refs.todoform.checkValidity()
       this.nameState = valid
       return valid
     },
 
-    resetModal () {
+    resetModal() {
       this.nameState = null
     },
 
-    handleOk (event) {
+    handleOk(event) {
       // Prevent modal from closing
       event.preventDefault()
       // Exit when the form isn't valid
@@ -87,19 +99,24 @@ export default {
         return
       }
       // Create UUID and commit to store
-      this.$set(this.task, 'taskId', uuidv4())
+      this.$set(this.task, "taskId", uuidv4())
       this.addTodo(this.task)
       // unset values to avoid vuex state manipulation errors
-      this.task = { taskId: undefined, headline: '', description: '', done: false }
+      this.task = {
+        taskId: undefined,
+        headline: "",
+        description: "",
+        done: false,
+      }
       // Hide the modal manually
       this.$nextTick(() => {
-        this.$bvModal.hide('add-modal')
+        this.$bvModal.hide("add-modal")
       })
     },
-    updateField (field, value) {
+    updateField(field, value) {
       this.task[field] = value
-    }
-  }
+    },
+  },
 }
 </script>
 

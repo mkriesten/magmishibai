@@ -8,24 +8,24 @@
 </template>
 
 <script>
-import TheHeader from '@/components/TheHeader/TheHeader'
+import TheHeader from "@/components/TheHeader/TheHeader"
 export default {
   components: {
-    TheHeader
-  }
+    TheHeader,
+  },
 }
 </script>
 
 <style>
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 .main-content {
-    margin-top: 4.5rem;
+  margin-top: 4.5rem;
 }
 </style>

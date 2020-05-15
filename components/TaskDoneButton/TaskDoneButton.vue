@@ -35,25 +35,25 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations } from "vuex"
 export default {
   props: {
     taskId: {
       type: String,
-      required: true
+      required: true,
     },
     done: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
-    toggle (id) {
+    toggle(id) {
       // toggle done / undone
       this.toggleStatus(id)
     },
-    ...mapMutations('taskticket', ['toggleStatus'])
-  }
+    ...mapMutations("taskticket", ["toggleStatus"]),
+  },
 }
 </script>
 

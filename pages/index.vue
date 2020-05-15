@@ -10,14 +10,13 @@
 </template>
 
 <script>
-import TaskContainer from '@/components/TaskContainer/TaskContainer'
+import TaskContainer from "@/components/TaskContainer/TaskContainer"
 
 export default {
   components: {
-    TaskContainer
-  }
+    TaskContainer,
+  },
 }
 </script>
 
-<style>
-</style>
+<style></style>

@@ -1,8 +1,6 @@
 <template>
-  <b-modal :id="'my-modal'+taskId" :title="headline">
-    <p
-      class="my-4"
-    >
+  <b-modal :id="'my-modal' + taskId" :title="headline">
+    <p class="my-4">
       {{ description }}
     </p>
   </b-modal>
@@ -13,20 +11,18 @@ export default {
   props: {
     taskId: {
       type: String,
-      required: true
+      required: true,
     },
     headline: {
       type: String,
-      required: true
+      required: true,
     },
     description: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

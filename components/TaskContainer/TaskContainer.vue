@@ -25,33 +25,33 @@
 </template>
 
 <script>
-import TaskTicket from '@/components/TaskTicket/TaskTicket'
-import AddButton from '@/components/AddButton/AddButton'
+import TaskTicket from "@/components/TaskTicket/TaskTicket"
+import AddButton from "@/components/AddButton/AddButton"
 export default {
   components: {
     TaskTicket,
-    AddButton
+    AddButton,
   },
   computed: {
-    tickets () {
+    tickets() {
       return this.$store.state.taskticket
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped>
 h2 {
-    color: white;
+  color: white;
 }
 
 .kamishibai-section {
-    background-color: #3e676f;
-    border-radius: 8px 8px;
-    padding-top: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    width: 100%;
-    margin-bottom: 2rem;
+  background-color: #3e676f;
+  border-radius: 8px 8px;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 100%;
+  margin-bottom: 2rem;
 }
 </style>
