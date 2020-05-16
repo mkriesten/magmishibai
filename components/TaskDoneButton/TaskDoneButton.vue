@@ -2,7 +2,7 @@
   <svg
     v-if="done"
     class="bi bi-check-circle taskbutton taskbutton-done"
-    width="1.1em"
+    width="1.2em"
     height="1.1em"
     viewBox="0 0 16 16"
     fill="currentColor"

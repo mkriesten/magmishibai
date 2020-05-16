@@ -3,8 +3,8 @@
     <b-row>
       <b-col>
         <h1>magmishibai</h1>
+        <TaskContainer />
       </b-col>
-      <TaskContainer />
     </b-row>
   </b-container>
 </template>
