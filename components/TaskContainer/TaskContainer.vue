@@ -1,25 +1,23 @@
 <template>
-  <b-container fluid class="kamishibai-section">
+  <b-container class="kamishibai-section">
     <b-row>
       <b-col>
         <h2>Tickets</h2>
       </b-col>
       <b-col>
-        <AddButton />
+        <AddButton class="float-right" />
       </b-col>
     </b-row>
     <b-row>
-      <b-card-group columns>
-        <TaskTicket
-          v-for="ticket in tickets.all"
-          :key="ticket.taskId"
-          :task-id="ticket.taskId"
-          :headline="ticket.headline"
-          :done="ticket.done"
-          :ticket="ticket"
-          :description="ticket.description"
-        />
-      </b-card-group>
+      <b-col>
+        <b-card-group columns>
+          <TaskTicket
+            v-for="ticket in tickets.all"
+            :key="ticket.taskId"
+            :task-id="ticket.taskId"
+          />
+        </b-card-group>
+      </b-col>
     </b-row>
   </b-container>
 </template>
@@ -48,10 +46,7 @@ h2 {
 .kamishibai-section {
   background-color: #3e676f;
   border-radius: 8px 8px;
-  padding-top: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
   width: 100%;
-  margin-bottom: 2rem;
+  padding-top: 1rem;
 }
 </style>
