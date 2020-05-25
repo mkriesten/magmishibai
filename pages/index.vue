@@ -16,6 +16,9 @@ export default {
   components: {
     TaskContainer,
   },
+  created() {
+    this.$store.dispatch("kamishibai/loadTasks")
+  },
 }
 </script>
 

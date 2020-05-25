@@ -4,19 +4,19 @@
       v-if="task.done"
       class="taskbutton taskbutton-done"
       font-scale="1.2"
-      @click="toggle(taskId)"
+      @click="toggle(task)"
     />
     <b-icon-circle-fill
       v-else
       class="taskbutton taskbutton-open"
       font-scale="1.2"
-      @click="toggle(taskId)"
+      @click="toggle(task)"
     />
   </div>
 </template>
 
 <script>
-import { mapMutations, mapGetters } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 export default {
   props: {
     taskId: {
@@ -25,16 +25,16 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("taskticket", ["getTaskTicketById"]),
+    ...mapGetters("kamishibai", ["getTaskTicketById"]),
     task() {
       return this.getTaskTicketById(this.taskId)
     },
   },
   methods: {
-    toggle(id) {
-      this.toggleStatus(id)
+    toggle(task) {
+      this.toggleStatus(task)
     },
-    ...mapMutations("taskticket", ["toggleStatus"]),
+    ...mapActions("kamishibai", ["toggleStatus"]),
   },
 }
 </script>
@@ -46,10 +46,10 @@ export default {
 }
 
 .taskbutton-done {
-  color: greenyellow;
+  color: darkgreen;
 }
 
 .taskbutton-open {
-  color: tomato;
+  color: lightcoral;
 }
 </style>

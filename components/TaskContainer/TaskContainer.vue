@@ -1,5 +1,5 @@
 <template>
-  <b-container class="kamishibai-section">
+  <b-container class="kamishibai-section shadow">
     <b-row>
       <b-col>
         <h2>Tickets</h2>
@@ -12,9 +12,9 @@
       <b-col>
         <b-card-group columns>
           <TaskTicket
-            v-for="ticket in tickets.all"
-            :key="ticket.taskId"
-            :task-id="ticket.taskId"
+            v-for="ticket in tasks"
+            :key="ticket._id"
+            :task-id="ticket._id"
           />
         </b-card-group>
       </b-col>
@@ -23,17 +23,19 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 import TaskTicket from "@/components/TaskTicket/TaskTicket"
 import AddButton from "@/components/AddButton/AddButton"
+
 export default {
   components: {
     TaskTicket,
     AddButton,
   },
   computed: {
-    tickets() {
-      return this.$store.state.taskticket
-    },
+    ...mapState({
+      tasks: (state) => state.kamishibai.tasks,
+    }),
   },
 }
 </script>
@@ -44,8 +46,8 @@ h2 {
 }
 
 .kamishibai-section {
-  background-color: #3e676f;
-  border-radius: 8px 8px;
+  background-color: lightseagreen;
+  border-radius: 0.25rem;
   width: 100%;
   padding-top: 1rem;
 }

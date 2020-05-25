@@ -16,7 +16,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("taskticket", ["getTaskTicketById"]),
+    ...mapGetters("kamishibai", ["getTaskTicketById"]),
     task() {
       return this.getTaskTicketById(this.taskId)
     },

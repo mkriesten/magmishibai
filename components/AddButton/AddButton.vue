@@ -34,8 +34,8 @@
           label-for="description"
         >
           <b-form-textarea
-            :value="task.description"
-            @input="updateField('description', $event)"
+            :value="task.text"
+            @input="updateField('text', $event)"
           />
         </b-form-group>
       </form>
@@ -44,22 +44,21 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from "uuid"
-import { mapMutations } from "vuex"
+import { mapActions } from "vuex"
 export default {
   data() {
     return {
       task: {
         taskId: undefined,
         headline: "",
-        description: "",
+        text: "",
         done: false,
       },
       nameState: null,
     }
   },
   methods: {
-    ...mapMutations("taskticket", ["addTodo"]),
+    ...mapActions("kamishibai", ["addTask"]),
 
     checkFormValidity() {
       const valid = this.$refs.todoform.checkValidity()
@@ -78,14 +77,13 @@ export default {
       if (!this.checkFormValidity()) {
         return
       }
-      // Create UUID and commit to store
-      this.$set(this.task, "taskId", uuidv4())
-      this.addTodo(this.task)
+      // Dispatch to API
+      this.addTask(this.task)
       // unset values to avoid vuex state manipulation errors
       this.task = {
         taskId: undefined,
         headline: "",
-        description: "",
+        text: "",
         done: false,
       }
       // Hide the modal manually

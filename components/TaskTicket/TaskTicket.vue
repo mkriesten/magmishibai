@@ -1,7 +1,7 @@
 <template>
   <div>
     <TaskTicketModal :task-id="taskId" />
-    <b-card :id="taskId" class="task">
+    <b-card :id="taskId" class="task shadow">
       <TaskDoneButton :task-id="taskId" />
       <b-icon-chat-dots
         v-b-modal="'my-modal' + taskId"
@@ -34,7 +34,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("taskticket", ["getTaskTicketById"]),
+    ...mapGetters("kamishibai", ["getTaskTicketById"]),
     task() {
       return this.getTaskTicketById(this.taskId)
     },
@@ -49,9 +49,7 @@ export default {
 }
 
 .task {
-  background-color: #022d30;
-  border-radius: 8px 8px;
-  color: white;
+  color: black;
   font-size: 1rem;
   height: 6rem;
   overflow: hidden;

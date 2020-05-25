@@ -3,7 +3,7 @@
     <b-modal
       :id="'delete-modal' + taskId"
       title="Delete Task"
-      @ok="trash(taskId)"
+      @ok="trash(task)"
     >
       <p>
         <strong>{{ task.headline }}</strong>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 export default {
   props: {
     taskId: {
@@ -36,16 +36,16 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("taskticket", ["getTaskTicketById"]),
+    ...mapGetters("kamishibai", ["getTaskTicketById"]),
     task() {
       return this.getTaskTicketById(this.taskId)
     },
   },
   methods: {
-    ...mapMutations("taskticket", ["delTodo"]),
+    ...mapActions("kamishibai", ["deleteTask"]),
 
     trash(id) {
-      this.delTodo(id)
+      this.deleteTask(id)
     },
   },
 }
