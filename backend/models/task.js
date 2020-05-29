@@ -9,6 +9,7 @@ const taskSchema = new Schema({
   headline: { type: String },
   text: { type: String },
   done: { type: Boolean },
+  cadence: { type: String },
 })
 
 module.exports = mongoose.model("Task", taskSchema)

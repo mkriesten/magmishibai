@@ -3,7 +3,9 @@
     <b-row>
       <b-col>
         <h1>magmishibai</h1>
-        <TaskContainer />
+        <TaskContainer :cadence="'Daily'" />
+        <TaskContainer :cadence="'Weekly'" />
+        <TaskContainer :cadence="'Monthly'" />
       </b-col>
     </b-row>
   </b-container>

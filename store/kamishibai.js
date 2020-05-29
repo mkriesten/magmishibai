@@ -46,11 +46,7 @@ export const actions = {
 
   async addTask({ commit }, data) {
     await axios
-      .post(this.$axios.defaults.baseURL + "/task/new", {
-        headline: data.headline,
-        text: data.text,
-        done: false,
-      })
+      .post(this.$axios.defaults.baseURL + "/task/new", data)
       .then((result) => {
         commit("ADD_TASK", result.data)
       })
@@ -90,5 +86,9 @@ export const actions = {
 export const getters = {
   getTaskTicketById: (state) => (id) => {
     return state.tasks.find((TaskTicket) => TaskTicket._id === id)
+  },
+
+  getTaskTicketByCadence: (state) => (cadence) => {
+    return state.tasks.filter((TaskTicket) => TaskTicket.cadence === cadence)
   },
 }

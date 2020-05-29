@@ -12,6 +12,7 @@ router.post("/task/new", (req, res) => {
       headline: req.body.headline,
       text: req.body.text,
       done: false,
+      cadence: req.body.cadence,
     },
     (err, task) => {
       if (err) {

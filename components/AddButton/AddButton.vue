@@ -1,12 +1,12 @@
 <template>
   <div>
     <b-icon-plus-circle
-      v-b-modal.add-modal
+      v-b-modal="'add-modal-' + cadence"
       class="add-button"
       font-scale="1.2"
     />
     <b-modal
-      id="add-modal"
+      :id="'add-modal-' + cadence"
       ref="modal"
       title="Add task to board"
       @show="resetModal"
@@ -38,6 +38,9 @@
             @input="updateField('text', $event)"
           />
         </b-form-group>
+        <b-form-group id="cadence" label="Cadence" label-for="cadence">
+          <b-form-select v-model="task.cadence" :options="options" />
+        </b-form-group>
       </form>
     </b-modal>
   </div>
@@ -46,6 +49,12 @@
 <script>
 import { mapActions } from "vuex"
 export default {
+  props: {
+    cadence: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       task: {
@@ -53,8 +62,14 @@ export default {
         headline: "",
         text: "",
         done: false,
+        cadence: "Daily",
       },
       nameState: null,
+      options: [
+        { value: "Daily", text: "Daily" },
+        { value: "Weekly", text: "Weekly" },
+        { value: "Monthly", text: "Monthly" },
+      ],
     }
   },
   methods: {
@@ -85,10 +100,11 @@ export default {
         headline: "",
         text: "",
         done: false,
+        cadence: "",
       }
       // Hide the modal manually
       this.$nextTick(() => {
-        this.$bvModal.hide("add-modal")
+        this.$bvModal.hide("add-modal-" + this.cadence)
       })
     },
     updateField(field, value) {

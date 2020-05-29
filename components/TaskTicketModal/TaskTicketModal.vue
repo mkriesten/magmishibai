@@ -1,7 +1,7 @@
 <template>
   <b-modal :id="'my-modal' + taskId" :title="task.headline">
     <p class="my-4">
-      {{ task.description }}
+      {{ task.text }}
     </p>
   </b-modal>
 </template>
