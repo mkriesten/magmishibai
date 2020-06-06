@@ -5,12 +5,18 @@
       <b-col align-self="center" class="no-pad-r">
         <b-button-toolbar class="float-right" justify>
           <b-button-group>
+            <b-button title="All tasks open" @click="allTasksOpen(tasks, true)">
+              <b-icon-check-all
+                class="rounded-circle bg-danger p-1"
+                scale="2"
+              />
+            </b-button>
             <b-button
               title="All tasks done"
               @click="allTasksOpen(tasks, false)"
             >
               <b-icon-check-all
-                class="rounded-circle bg-danger p-1"
+                class="rounded-circle bg-success p-1"
                 scale="2"
               />
             </b-button>
