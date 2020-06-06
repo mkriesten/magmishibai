@@ -1,31 +1,32 @@
 <template>
-  <div>
-    <TaskTicketModal :task-id="taskId" />
-    <b-card :id="taskId" class="task shadow">
-      <TaskDoneButton :task-id="taskId" />
-      <b-icon-chat-dots
-        v-b-modal="'my-modal' + taskId"
-        class="float-right"
-        font-scale="1.1"
-      />
-      <DeleteTaskIcon :task-id="taskId" />
-      <b-card-text>
-        {{ task.headline }}
-      </b-card-text>
-    </b-card>
-  </div>
+  <b-card :id="taskId" class="task shadow">
+    <b-row>
+      <b-col>
+        <b-card-text>
+          {{ task.headline }}
+        </b-card-text>
+      </b-col>
+      <b-col>
+        <TaskButtonDone :task-id="taskId" />
+        <br />
+        <TaskButtonDelete :task-id="taskId" />
+        <br />
+        <TaskTicketModal :task-id="taskId" />
+      </b-col>
+    </b-row>
+  </b-card>
 </template>
 
 <script>
 import { mapGetters } from "vuex"
-import TaskDoneButton from "@/components/TaskDoneButton/TaskDoneButton"
-import DeleteTaskIcon from "@/components/DeleteTaskIcon/DeleteTaskIcon"
+import TaskButtonDone from "@/components/TaskButtonDone/TaskButtonDone"
+import TaskButtonDelete from "@/components/TaskButtonDelete/TaskButtonDelete"
 import TaskTicketModal from "@/components/TaskTicketModal/TaskTicketModal"
 export default {
   components: {
-    TaskDoneButton,
+    TaskButtonDone,
     TaskTicketModal,
-    DeleteTaskIcon,
+    TaskButtonDelete,
   },
   props: {
     taskId: {
@@ -56,7 +57,6 @@ export default {
 }
 
 .bi {
-  margin-right: 0.2rem;
-  cursor: pointer;
+  color: black;
 }
 </style>

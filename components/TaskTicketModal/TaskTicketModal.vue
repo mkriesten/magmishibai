@@ -1,9 +1,12 @@
 <template>
-  <b-modal :id="'my-modal' + taskId" :title="task.headline">
-    <p class="my-4">
-      {{ task.text }}
-    </p>
-  </b-modal>
+  <div>
+    <b-icon-chat-dots v-b-modal="'my-modal' + taskId" scale="1.2" />
+    <b-modal :id="'my-modal' + taskId" :title="task.headline">
+      <p class="my-4">
+        {{ task.text }}
+      </p>
+    </b-modal>
+  </div>
 </template>
 
 <script>
@@ -24,4 +27,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.bi {
+  color: black;
+}
+</style>

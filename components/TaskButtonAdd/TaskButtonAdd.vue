@@ -2,8 +2,8 @@
   <div>
     <b-icon-plus-circle
       v-b-modal="'add-modal-' + cadence"
-      class="add-button"
-      font-scale="1.2"
+      class="button"
+      scale="1.2"
     />
     <b-modal
       :id="'add-modal-' + cadence"
@@ -114,9 +114,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.add-button {
-  cursor: pointer;
-  color: white;
-}
-</style>
+<style scoped></style>

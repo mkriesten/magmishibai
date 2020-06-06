@@ -2,14 +2,14 @@
   <div>
     <b-icon-check-circle
       v-if="task.done"
-      class="taskbutton taskbutton-done"
-      font-scale="1.2"
+      class="taskbutton-done"
+      scale="1.2"
       @click="toggle(task)"
     />
-    <b-icon-circle-fill
+    <b-icon-x-circle
       v-else
-      class="taskbutton taskbutton-open"
-      font-scale="1.2"
+      class="taskbutton-open"
+      scale="1.2"
       @click="toggle(task)"
     />
   </div>
@@ -40,16 +40,11 @@ export default {
 </script>
 
 <style scoped>
-.taskbutton {
-  float: right;
-  cursor: pointer;
-}
-
 .taskbutton-done {
-  color: darkgreen;
+  color: green;
 }
 
 .taskbutton-open {
-  color: lightcoral;
+  color: red;
 }
 </style>

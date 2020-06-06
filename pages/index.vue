@@ -2,7 +2,11 @@
   <b-container>
     <b-row>
       <b-col>
-        <h1>magmishibai</h1>
+        <TaskButtonBar />
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
         <TaskContainer :cadence="'Daily'" />
         <TaskContainer :cadence="'Weekly'" />
         <TaskContainer :cadence="'Monthly'" />
@@ -13,10 +17,12 @@
 
 <script>
 import TaskContainer from "@/components/TaskContainer/TaskContainer"
+import TaskButtonBar from "@/components/TaskButtonBar/TaskButtonBar"
 
 export default {
   components: {
     TaskContainer,
+    TaskButtonBar,
   },
   created() {
     this.$store.dispatch("kamishibai/loadTasks")
@@ -24,4 +30,10 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.bi {
+  cursor: pointer;
+  color: white;
+  float: right;
+}
+</style>

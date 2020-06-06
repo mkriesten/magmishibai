@@ -18,11 +18,7 @@
         </b-button>
       </template>
     </b-modal>
-    <b-icon-trash
-      v-b-modal="'delete-modal' + taskId"
-      class="taskbutton float-right"
-      font-scale="1.2"
-    />
+    <b-icon-trash v-b-modal="'delete-modal' + taskId" scale="1.2" />
   </div>
 </template>
 
@@ -52,12 +48,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.taskbutton {
-  float: right;
-  cursor: pointer;
-}
-
 .bi {
-  margin-right: 0.2rem;
+  color: black;
 }
 </style>
