@@ -1,10 +1,8 @@
 <template>
   <div>
-    <b-icon-plus-circle
-      v-b-modal="'add-modal-' + cadence"
-      class="button"
-      scale="1.2"
-    />
+    <b-button variant="dark">
+      <b-icon-plus-circle v-b-modal="'add-modal-' + cadence" class="button" />
+    </b-button>
     <b-modal
       :id="'add-modal-' + cadence"
       ref="modal"

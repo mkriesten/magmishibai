@@ -1,38 +1,51 @@
 <template>
-  <b-container class="buttonbar-section">
-    <b-row>
-      <b-col><h3>magmishibai</h3></b-col>
-      <b-col align-self="center" class="no-pad-r">
-        <b-button-toolbar class="float-right" justify>
-          <b-button-group>
-            <b-button title="All tasks open" @click="allTasksOpen(tasks, true)">
-              <b-icon-check-all
-                class="rounded-circle bg-danger p-1"
-                scale="2"
-              />
-            </b-button>
-            <b-button
-              title="All tasks done"
-              @click="allTasksOpen(tasks, false)"
-            >
-              <b-icon-check-all
-                class="rounded-circle bg-success p-1"
-                scale="2"
-              />
-            </b-button>
-          </b-button-group>
-        </b-button-toolbar>
-      </b-col>
-    </b-row>
-  </b-container>
+  <b-button-toolbar class="float-right" justify>
+    <b-button-group class="mx-1">
+      <b-button
+        title="All tasks open"
+        variant="dark"
+        @click="allTasksOpen(tasks, true)"
+      >
+        <b-icon-check-all class="rounded-circle bg-danger" />
+      </b-button>
+      <b-button
+        title="All tasks done"
+        variant="dark"
+        @click="allTasksOpen(tasks, false)"
+      >
+        <b-icon-check-all class="rounded-circle bg-success" />
+      </b-button>
+    </b-button-group>
+    <b-button-group>
+      <!-- 'Daily' set just to have a default... -->
+      <TaskButtonAdd :cadence="cadence" />
+    </b-button-group>
+  </b-button-toolbar>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex"
+import { mapGetters, mapActions } from "vuex"
+import TaskButtonAdd from "@/components/TaskButtonAdd/TaskButtonAdd"
 export default {
-  computed: {
-    ...mapState({ tasks: (state) => state.kamishibai.tasks }),
+  components: {
+    TaskButtonAdd,
   },
+
+  props: {
+    cadence: {
+      type: String,
+      required: false,
+      default: "all",
+    },
+  },
+
+  computed: {
+    ...mapGetters("kamishibai", ["getTaskTicketByCadence"]),
+    tasks() {
+      return this.getTaskTicketByCadence(this.cadence)
+    },
+  },
+
   methods: {
     ...mapActions("kamishibai", ["toggleStatus"]),
 
@@ -52,16 +65,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.no-pad-r {
-  padding-right: 0;
-}
-
 .buttonbar-section {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   border-radius: 0.25rem;
-  padding-top: 1rem;
-  margin-bottom: 1rem;
-  margin-top: 3rem;
 }
 
 h3 {

@@ -89,6 +89,11 @@ export const getters = {
   },
 
   getTaskTicketByCadence: (state) => (cadence) => {
-    return state.tasks.filter((TaskTicket) => TaskTicket.cadence === cadence)
+    // return all tasks if cadence is set to all, filter if cadence has different value
+    if (cadence === "all") {
+      return state.tasks
+    } else {
+      return state.tasks.filter((TaskTicket) => TaskTicket.cadence === cadence)
+    }
   },
 }

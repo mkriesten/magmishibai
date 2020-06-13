@@ -2,7 +2,7 @@
   <b-container>
     <b-row>
       <b-col>
-        <TaskButtonBar />
+        <TheHeadline />
       </b-col>
     </b-row>
     <b-row>
@@ -17,12 +17,12 @@
 
 <script>
 import TaskContainer from "@/components/TaskContainer/TaskContainer"
-import TaskButtonBar from "@/components/TaskButtonBar/TaskButtonBar"
+import TheHeadline from "@/components/TheHeadline/TheHeadline"
 
 export default {
   components: {
     TaskContainer,
-    TaskButtonBar,
+    TheHeadline,
   },
   created() {
     this.$store.dispatch("kamishibai/loadTasks")

@@ -1,7 +1,7 @@
 <template>
   <b-card :id="taskId" class="task shadow">
     <b-row>
-      <b-col>
+      <b-col cols="10">
         <b-card-text>
           {{ task.headline }}
         </b-card-text>

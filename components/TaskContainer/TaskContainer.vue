@@ -1,11 +1,11 @@
 <template>
-  <b-container class="kamishibai-section shadow">
-    <b-row>
+  <b-container class="kamishibai-section pt-3 mb-3 shadow">
+    <b-row class="mb-3">
       <b-col>
         <h4>{{ cadence }} Tickets</h4>
       </b-col>
-      <b-col>
-        <TaskButtonAdd class="float-right" :cadence="cadence" />
+      <b-col align-self="center">
+        <TaskButtonBar :cadence="cadence" />
       </b-col>
     </b-row>
     <b-row>
@@ -25,12 +25,12 @@
 <script>
 import { mapGetters } from "vuex"
 import TaskTicket from "@/components/TaskTicket/TaskTicket"
-import TaskButtonAdd from "@/components/TaskButtonAdd/TaskButtonAdd"
+import TaskButtonBar from "@/components/TaskButtonBar/TaskButtonBar"
 
 export default {
   components: {
     TaskTicket,
-    TaskButtonAdd,
+    TaskButtonBar,
   },
   props: {
     cadence: {
@@ -55,7 +55,5 @@ h4 {
 .kamishibai-section {
   background-color: #6c757d;
   border-radius: 0.25rem;
-  padding-top: 1rem;
-  margin-bottom: 1rem;
 }
 </style>
