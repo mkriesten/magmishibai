@@ -10,6 +10,13 @@ const taskSchema = new Schema({
   text: { type: String },
   done: { type: Boolean },
   cadence: { type: String },
+  ideas: [
+    {
+      _id: { type: mongoose.Types.ObjectId },
+      date: { type: Date, default: Date.now },
+      text: { type: String },
+    },
+  ],
 })
 
 module.exports = mongoose.model("Task", taskSchema)

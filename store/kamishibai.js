@@ -12,22 +12,26 @@ export const mutations = {
     })
     task.done = item.done
   },
+
   setCurrentTask(state, task) {
     state.currentTask = task
   },
+
   ADD_TASK(state, task) {
     state.tasks.push(task)
   },
-  // i stopped here. what I'm trying to accomplish: finding a task, replacing all data with the task I submitted into the function
-  updateTask: (state, { id, task }) => {
-    const newtask = state.tasks.find((task) => task._id === id)
-    Object.assign(newtask, task)
+
+  UPDATE_TASK: (state, task) => {
+    const index = state.tasks.findIndex((res) => res._id === task._id)
+    state.tasks.splice(index, 1, task)
   },
+
   SAVE_TASKS: (state, tasks) => {
     state.tasks = tasks
   },
+
   DELETE_TASK: (state, task) => {
-    const deltask = state.tasks.findIndex((x) => x._id === task._id)
+    const deltask = state.tasks.findIndex((res) => res._id === task._id)
     state.tasks.splice(deltask, 1)
   },
 }
@@ -60,6 +64,36 @@ export const actions = {
       .delete(this.$axios.defaults.baseURL + "/task/" + payload._id)
       .then((result) => {
         commit("DELETE_TASK", result.data)
+      })
+      .catch((error) => {
+        throw new Error(`API ${error}`)
+      })
+  },
+
+  async updateTask({ commit }, payload) {
+    await axios
+      .put(this.$axios.defaults.baseURL + "/task/" + payload._id, {
+        ideas: payload.ideas,
+      })
+      .then((result) => {
+        console.log(result)
+        console.log(result.data)
+        commit("UPDATE_TASK", result.data)
+      })
+      .catch((error) => {
+        throw new Error(`API ${error}`)
+      })
+  },
+
+  async updateIdeas({ commit }, payload) {
+    await axios
+      .put(this.$axios.defaults.baseURL + "/task/" + payload._id + "/ideas", {
+        ideas: payload.ideas,
+      })
+      .then((result) => {
+        console.log(result)
+        console.log(result.data)
+        commit("UPDATE_TASK", result.data)
       })
       .catch((error) => {
         throw new Error(`API ${error}`)
