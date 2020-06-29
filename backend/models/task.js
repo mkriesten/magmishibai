@@ -10,6 +10,12 @@ const taskSchema = new Schema({
   text: { type: String },
   done: { type: Boolean },
   cadence: { type: String },
+  ideas: [
+    {
+      date: { type: Date, default: Date.now },
+      text: { type: String },
+    },
+  ],
 })
 
 module.exports = mongoose.model("Task", taskSchema)
