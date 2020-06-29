@@ -76,8 +76,6 @@ export const actions = {
         ideas: payload.ideas,
       })
       .then((result) => {
-        console.log(result)
-        console.log(result.data)
         commit("UPDATE_TASK", result.data)
       })
       .catch((error) => {
@@ -87,12 +85,29 @@ export const actions = {
 
   async updateIdeas({ commit }, payload) {
     await axios
-      .put(this.$axios.defaults.baseURL + "/task/" + payload._id + "/ideas", {
-        ideas: payload.ideas,
-      })
+      .put(
+        this.$axios.defaults.baseURL + "/task/" + payload._id + "/add/ideas",
+        {
+          ideas: payload.ideas,
+        }
+      )
       .then((result) => {
-        console.log(result)
-        console.log(result.data)
+        commit("UPDATE_TASK", result.data)
+      })
+      .catch((error) => {
+        throw new Error(`API ${error}`)
+      })
+  },
+
+  async deleteIdea({ commit }, payload) {
+    await axios
+      .put(
+        this.$axios.defaults.baseURL + "/task/" + payload._id + "/delete/ideas",
+        {
+          ideas: payload.ideas,
+        }
+      )
+      .then((result) => {
         commit("UPDATE_TASK", result.data)
       })
       .catch((error) => {

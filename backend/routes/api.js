@@ -58,7 +58,7 @@ router.put("/task/:_id", (req, res) => {
 // is that really necessary? this is basically the same as the previous put, but I want to push
 // to an array instead of just updating the document. if I don't add the specific $push, all other ideas
 // get overwritten
-router.put("/task/:_id/ideas", (req, res) => {
+router.put("/task/:_id/add/ideas", (req, res) => {
   Task.findByIdAndUpdate(
     mongoose.Types.ObjectId(req.params._id),
     { $push: { ideas: { text: req.body.ideas[0].text } } },
@@ -84,6 +84,32 @@ router.delete("/task/:_id", (req, res) => {
       res.status(200).json(task)
     }
   })
+})
+
+// is that really necessary? this is basically the same as the previous put, but I want to pull
+// from an array instead of just updating the document.
+router.put("/task/:_id/delete/ideas", (req, res) => {
+  Task.findByIdAndUpdate(
+    mongoose.Types.ObjectId(req.params._id),
+    {
+      $pull: {
+        ideas: {
+          _id: mongoose.Types.ObjectId(req.body.ideas[0]._id),
+          text: req.body.ideas[0].text,
+        },
+      },
+    },
+    { new: true },
+    (err, task) => {
+      if (err) {
+        res.status(500).send("Error")
+      } else if (task) {
+        res.status(200).json(task)
+      } else {
+        res.status(404).send("Item not found")
+      }
+    }
+  )
 })
 
 router.get("/tasks", (req, res) => {
