@@ -45,6 +45,7 @@ module.exports = {
     "bootstrap-vue/nuxt",
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
+    // "@nuxtjs/auth",
   ],
   bootstrapVue: {
     icons: true,
@@ -65,4 +66,7 @@ module.exports = {
      */
     // extend(config, ctx) {},
   },
+  // router: {
+  //   middleware: ["auth"],
+  // },
 }

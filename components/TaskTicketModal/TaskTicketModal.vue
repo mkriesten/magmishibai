@@ -4,36 +4,53 @@
     <b-modal :id="'my-modal' + taskId" :title="task.headline" ok-only>
       <template v-slot:default>
         <p>{{ task.text }}</p>
-        <b-table striped hover caption-top :items="task.ideas" :fields="fields">
-          <template v-slot:table-caption>
-            Improvement Ideas
-          </template>
-          <template v-slot:cell(date)="data">
-            {{ formatDate(data.item.date) }}
-          </template>
-          <template v-slot:cell(actions)="data">
-            <span class="sr-only">Delete Idea</span>
-            <b-icon-trash @click="delIdea(taskId, data.item)" />
-          </template>
-        </b-table>
-        <div class="ar">
-          <b-form ref="todoform" inline>
-            <b-form-group label-for="idea" invalid-feedback="Idea is required">
-              <label class="sr-only" for="idea">Idea</label>
-
-              <b-input-group prepend="Idea" class="mb-2 mr-sm-2 mb-sm-0">
-                <b-input
-                  id="idea"
-                  v-model="idea"
-                  placeholder="A good next step"
-                />
-              </b-input-group>
-            </b-form-group>
-            <b-button @click="saveIdea(taskId, idea)">
-              Add
-            </b-button>
-          </b-form>
+        <div class="overflow-auto">
+          <b-table
+            id="ideas-table"
+            striped
+            hover
+            caption-top
+            :items="task.ideas"
+            :fields="fields"
+            :current-page="currentPage"
+            :per-page="perPage"
+          >
+            <template v-slot:table-caption>
+              Improvement Ideas
+            </template>
+            <template v-slot:cell(date)="data">
+              {{ formatDate(data.item.date) }}
+            </template>
+            <template v-slot:cell(actions)="data">
+              <span class="sr-only">Delete Idea</span>
+              <b-icon-trash @click="delIdea(taskId, data.item)" />
+            </template>
+          </b-table>
+          <b-pagination
+            v-model="currentPage"
+            :total-rows="rows"
+            :per-page="perPage"
+            aria-controls="ideas-table"
+            align="center"
+          />
         </div>
+        <hr />
+        <b-form ref="todoform" inline>
+          <b-form-group label-for="idea" invalid-feedback="Idea is required">
+            <label class="sr-only" for="idea">Idea</label>
+
+            <b-input-group prepend="Idea" class="mb-2 mr-sm-2 mb-sm-0">
+              <b-input
+                id="idea"
+                v-model="idea"
+                placeholder="A good next step"
+              />
+            </b-input-group>
+          </b-form-group>
+          <b-button @click="saveIdea(taskId, idea)">
+            Add
+          </b-button>
+        </b-form>
       </template>
     </b-modal>
   </div>
@@ -49,17 +66,25 @@ export default {
       required: true,
     },
   },
+
   data() {
     return {
       fields: ["date", "text", "actions"],
       idea: "",
       showForm: false,
+      perPage: 5,
+      currentPage: 1,
     }
   },
+
   computed: {
     ...mapGetters("kamishibai", ["getTaskTicketById"]),
     task() {
       return this.getTaskTicketById(this.taskId)
+    },
+
+    rows() {
+      return this.task.ideas.length
     },
   },
 
@@ -71,16 +96,12 @@ export default {
       }
     },
 
-    openIdea(status) {
-      status ? (this.showForm = false) : (this.showForm = true)
-    },
-
-    delIdea(id, item) {
+    async delIdea(id, item) {
       const data = {
         _id: id,
         ideas: [{ _id: item._id, text: item.text }],
       }
-      this.deleteIdea(data)
+      await this.deleteIdea(data)
     },
 
     async saveIdea(id, text) {
