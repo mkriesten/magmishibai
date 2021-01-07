@@ -10,12 +10,8 @@
       </p>
       <p>Do you want to permanently delete this task?</p>
       <template v-slot:modal-footer="{ ok, cancel }">
-        <b-button variant="second" @click="cancel()">
-          Cancel
-        </b-button>
-        <b-button variant="danger" @click="ok()">
-          Confirm
-        </b-button>
+        <b-button variant="second" @click="cancel()">Cancel</b-button>
+        <b-button variant="danger" @click="ok()">Confirm</b-button>
       </template>
     </b-modal>
     <b-icon-trash v-b-modal="'delete-modal' + taskId" scale="1.2" />
