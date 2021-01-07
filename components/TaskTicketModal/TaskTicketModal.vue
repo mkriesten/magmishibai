@@ -15,9 +15,7 @@
             :current-page="currentPage"
             :per-page="perPage"
           >
-            <template v-slot:table-caption>
-              Improvement Ideas
-            </template>
+            <template v-slot:table-caption>Improvement Ideas</template>
             <template v-slot:cell(date)="data">
               {{ formatDate(data.item.date) }}
             </template>
@@ -47,9 +45,7 @@
               />
             </b-input-group>
           </b-form-group>
-          <b-button @click="saveIdea(taskId, idea)">
-            Add
-          </b-button>
+          <b-button @click="saveIdea(taskId, idea)">Add</b-button>
         </b-form>
       </template>
     </b-modal>
