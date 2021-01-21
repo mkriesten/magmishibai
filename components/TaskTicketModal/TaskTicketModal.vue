@@ -5,9 +5,7 @@
       <template v-slot:default>
         <p>{{ task.text }}</p>
         <b-table striped hover caption-top :items="task.ideas" :fields="fields">
-          <template v-slot:table-caption>
-            Improvement Ideas
-          </template>
+          <template v-slot:table-caption> Improvement Ideas </template>
           <template v-slot:cell(date)="data">
             {{ formatDate(data.item.date) }}
           </template>
@@ -29,9 +27,7 @@
                 />
               </b-input-group>
             </b-form-group>
-            <b-button @click="saveIdea(taskId, idea)">
-              Add
-            </b-button>
+            <b-button @click="saveIdea(taskId, idea)"> Add </b-button>
           </b-form>
         </div>
       </template>

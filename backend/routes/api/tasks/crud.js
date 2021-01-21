@@ -1,11 +1,11 @@
 // routes/api.js
 
-const Task = require("../models/task")
+const Task = require("../../../models/task")
 const express = require("express")
-const mongoose = require("mongoose")
 const router = express.Router()
+const mongoose = require("mongoose")
 
-router.post("/task/new", (req, res) => {
+router.post("/new", (req, res) => {
   Task.create(
     {
       _id: new mongoose.Types.ObjectId(),
@@ -25,7 +25,7 @@ router.post("/task/new", (req, res) => {
   )
 })
 
-router.get("/task/:_id", (req, res) => {
+router.get("/:_id", (req, res) => {
   Task.findById(req.params._id, (err, task) => {
     if (err) {
       console.log("RETRIEVE error: " + err)
@@ -38,7 +38,7 @@ router.get("/task/:_id", (req, res) => {
   })
 })
 
-router.put("/task/:_id", (req, res) => {
+router.put("/:_id", (req, res) => {
   Task.findByIdAndUpdate(
     mongoose.Types.ObjectId(req.params._id),
     req.body,
@@ -58,7 +58,7 @@ router.put("/task/:_id", (req, res) => {
 // is that really necessary? this is basically the same as the previous put, but I want to push
 // to an array instead of just updating the document. if I don't add the specific $push, all other ideas
 // get overwritten
-router.put("/task/:_id/add/ideas", (req, res) => {
+router.put("/:_id/add/ideas", (req, res) => {
   Task.findByIdAndUpdate(
     mongoose.Types.ObjectId(req.params._id),
     { $push: { ideas: { text: req.body.ideas[0].text } } },
@@ -75,7 +75,7 @@ router.put("/task/:_id/add/ideas", (req, res) => {
   )
 })
 
-router.delete("/task/:_id", (req, res) => {
+router.delete("/:_id", (req, res) => {
   Task.findByIdAndRemove(req.params._id, (err, task) => {
     if (err) {
       console.log("DELETE error: " + err)
@@ -88,7 +88,7 @@ router.delete("/task/:_id", (req, res) => {
 
 // is that really necessary? this is basically the same as the previous put, but I want to pull
 // from an array instead of just updating the document.
-router.put("/task/:_id/delete/ideas", (req, res) => {
+router.put("/:_id/delete/ideas", (req, res) => {
   Task.findByIdAndUpdate(
     mongoose.Types.ObjectId(req.params._id),
     {
@@ -112,7 +112,7 @@ router.put("/task/:_id/delete/ideas", (req, res) => {
   )
 })
 
-router.get("/tasks", (req, res) => {
+router.get("/", (req, res) => {
   Task.find({}, (err, t) => {
     if (err) {
       console.log("RETRIEVE error: " + err)

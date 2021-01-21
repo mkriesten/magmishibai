@@ -1,8 +1,8 @@
 <template>
   <b-container>
     <b-row>
-      <b-col>
-        <TheHeadline />
+      <b-col class="mt-5">
+        <h3>magmishibai</h3>
       </b-col>
     </b-row>
     <b-row>
@@ -17,12 +17,11 @@
 
 <script>
 import TaskContainer from "@/components/TaskContainer/TaskContainer"
-import TheHeadline from "@/components/TheHeadline/TheHeadline"
 
 export default {
+  middleware: "auth",
   components: {
     TaskContainer,
-    TheHeadline,
   },
   created() {
     this.$store.dispatch("kamishibai/loadTasks")

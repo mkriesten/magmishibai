@@ -1,7 +1,8 @@
 <template>
   <b-container>
     <b-row>
-      <b-col>
+      <b-col class="mt-5">
+        <h3>Please log in to proceed</h3>
         <b-form>
           <b-form-group label="E-Mail" label-for="username">
             <b-form-input
@@ -20,9 +21,7 @@
               invalid-feedback="Password is required"
             />
           </b-form-group>
-          <b-button @click="submitForm(loginData)">
-            Login
-          </b-button>
+          <b-button @click="submitForm(loginData)"> Login </b-button>
         </b-form>
       </b-col>
     </b-row>
@@ -34,8 +33,8 @@ export default {
   data() {
     return {
       loginData: {
-        email: null,
-        password: null,
+        email: "",
+        password: "",
       },
     }
   },
@@ -45,6 +44,8 @@ export default {
         let response = await this.$auth.loginWith("local", {
           data: loginData,
         })
+        // after log in, go to board
+        this.$router.push("/")
         console.log(response)
       } catch (error) {
         console.log(error)

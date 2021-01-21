@@ -1,5 +1,6 @@
 module.exports = {
-  mode: "universal",
+  //mode: "universal",
+  telemetry: false,
   /*
    ** Headers of the page
    */
@@ -47,9 +48,9 @@ module.exports = {
     "@nuxtjs/axios",
     "@nuxtjs/auth",
   ],
-  router: {
-    middleware: ["auth"],
-  },
+  // router: {
+  //   middleware: ["auth"],
+  // },
   bootstrapVue: {
     icons: true,
   },
@@ -58,7 +59,7 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: "http://localhost:9000/api",
+    baseURL: "http://localhost:9000",
   },
   /*
    ** Build configuration
@@ -72,19 +73,28 @@ module.exports = {
   auth: {
     strategies: {
       local: {
+        token: {
+          property: "token",
+          // required: true,
+          type: "",
+        },
+        user: {
+          property: "user",
+          // autoFetch: true
+        },
         endpoints: {
           login: {
-            url: "/sessions",
+            url: "/users/login",
             method: "post",
-            propertyName: "token",
+            propertyName: "data.token",
           },
-          // logout: { url: "/api/auth/logout", method: "post" },
-          // user: { url: "/api/auth/user", method: "get", propertyName: "user" },
+          logout: { url: "/users/logout", method: "post" },
+          user: {
+            url: "/users/profile",
+            method: "get",
+            propertyName: "data",
+          },
         },
-        // tokenRequired: true,
-        // tokenType: 'bearer',
-        // globalToken: true,
-        // autoFetchUser: true
       },
     },
   },
