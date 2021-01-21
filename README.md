@@ -33,7 +33,7 @@ $ npm install
 $ npm run dev
 ```
 
-> Configuration & additional information
-> You will need to enter a secret for token based authentication in config.js and make sure your file is securely stored and has proper access rights.
+# Configuration & additional information
+You will need to enter a secret for token based authentication in config.js and make sure your file is securely stored and has proper access rights.
 
 A new user needs to be registered at the previously mentioned MongoDB backend before login and access to the kamishibai board is possible.
