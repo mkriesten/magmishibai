@@ -8,12 +8,44 @@
         <nuxt-link tag="li" to="/about" class="nav-link">
           <a>About</a>
         </nuxt-link>
+        <nuxt-link
+          v-if="$auth.loggedIn"
+          tag="li"
+          to="/profile"
+          class="nav-link"
+        >
+          <div v-if="$auth.loggedIn">
+            <a>{{ $auth.user.email }}</a>
+          </div>
+        </nuxt-link>
+        <nuxt-link v-else tag="li" to="/login" class="nav-link">
+          <a>Login</a>
+        </nuxt-link>
+        <nuxt-link v-if="$auth.loggedIn" tag="li" to="/login" class="nav-link">
+          <a @click="logoutUser()">Logout</a>
+        </nuxt-link>
+        <nuxt-link v-else tag="li" to="/register" class="nav-link">
+          <a>Register</a>
+        </nuxt-link>
       </ul>
     </nav>
   </header>
 </template>
 
-<script></script>
+<script>
+export default {
+  methods: {
+    async logoutUser() {
+      try {
+        await this.$auth.logout()
+        this.$router.push("/login")
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  },
+}
+</script>
 
 <style scoped>
 .main-header {

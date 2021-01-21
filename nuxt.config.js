@@ -1,5 +1,6 @@
 module.exports = {
-  mode: "universal",
+  //mode: "universal",
+  telemetry: false,
   /*
    ** Headers of the page
    */
@@ -45,8 +46,11 @@ module.exports = {
     "bootstrap-vue/nuxt",
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
-    // "@nuxtjs/auth",
+    "@nuxtjs/auth",
   ],
+  // router: {
+  //   middleware: ["auth"],
+  // },
   bootstrapVue: {
     icons: true,
   },
@@ -55,7 +59,7 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: "http://localhost:9000/api",
+    baseURL: "http://localhost:9000",
   },
   /*
    ** Build configuration
@@ -66,7 +70,32 @@ module.exports = {
      */
     // extend(config, ctx) {},
   },
-  // router: {
-  //   middleware: ["auth"],
-  // },
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: "token",
+          // required: true,
+          type: "",
+        },
+        user: {
+          property: "user",
+          // autoFetch: true
+        },
+        endpoints: {
+          login: {
+            url: "/users/login",
+            method: "post",
+            propertyName: "data.token",
+          },
+          logout: { url: "/users/logout", method: "post" },
+          user: {
+            url: "/users/profile",
+            method: "get",
+            propertyName: "data",
+          },
+        },
+      },
+    },
+  },
 }

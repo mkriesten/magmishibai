@@ -1,9 +1,9 @@
 <template>
   <b-container>
     <b-row>
-      <b-col>
+      <b-col class="mt-5">
         <section id="about-page">
-          <h1>magmishibai</h1>
+          <h3>magmishibai</h3>
           <p>I thought it would be good to have a virtual kamishibai board</p>
         </section>
       </b-col>

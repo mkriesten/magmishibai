@@ -50,7 +50,7 @@ export const actions = {
 
   async addTask({ commit }, data) {
     await axios
-      .post(this.$axios.defaults.baseURL + "/task/new", data)
+      .post(this.$axios.defaults.baseURL + "/tasks/new", data)
       .then((result) => {
         commit("ADD_TASK", result.data)
       })
@@ -61,7 +61,7 @@ export const actions = {
 
   async deleteTask({ commit }, payload) {
     await axios
-      .delete(this.$axios.defaults.baseURL + "/task/" + payload._id)
+      .delete(this.$axios.defaults.baseURL + "/tasks/" + payload._id)
       .then((result) => {
         commit("DELETE_TASK", result.data)
       })
@@ -72,7 +72,7 @@ export const actions = {
 
   async updateTask({ commit }, payload) {
     await axios
-      .put(this.$axios.defaults.baseURL + "/task/" + payload._id, {
+      .put(this.$axios.defaults.baseURL + "/tasks/" + payload._id, {
         ideas: payload.ideas,
       })
       .then((result) => {
@@ -86,7 +86,7 @@ export const actions = {
   async updateIdeas({ commit }, payload) {
     await axios
       .put(
-        this.$axios.defaults.baseURL + "/task/" + payload._id + "/add/ideas",
+        this.$axios.defaults.baseURL + "/tasks/" + payload._id + "/add/ideas",
         {
           ideas: payload.ideas,
         }
@@ -102,7 +102,10 @@ export const actions = {
   async deleteIdea({ commit }, payload) {
     await axios
       .put(
-        this.$axios.defaults.baseURL + "/task/" + payload._id + "/delete/ideas",
+        this.$axios.defaults.baseURL +
+          "/tasks/" +
+          payload._id +
+          "/delete/ideas",
         {
           ideas: payload.ideas,
         }
@@ -120,7 +123,7 @@ export const actions = {
     payload.done ? (newDone = false) : (newDone = true)
 
     await axios
-      .put(this.$axios.defaults.baseURL + "/task/" + payload._id, {
+      .put(this.$axios.defaults.baseURL + "/tasks/" + payload._id, {
         done: newDone,
       })
       .then((result) => {
