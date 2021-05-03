@@ -2,31 +2,31 @@
   <header class="main-header">
     <nav class="main-nav">
       <ul class="nav-links">
-        <nuxt-link tag="li" to="/" class="nav-link">
-          <a>Board</a>
-        </nuxt-link>
-        <nuxt-link tag="li" to="/about" class="nav-link">
-          <a>About</a>
-        </nuxt-link>
-        <nuxt-link
+        <b-link tag="li" to="/" class="nav-link"> Board </b-link>
+        <b-link tag="li" to="/about" class="nav-link"> About </b-link>
+        <b-link v-if="$auth.loggedIn" tag="li" to="/profile" class="nav-link">
+          <div v-if="$auth.loggedIn">
+            {{ $auth.user.email }}
+          </div>
+        </b-link>
+        <b-link v-else tag="li" to="/login" class="nav-link"> Login </b-link>
+        <b-link
           v-if="$auth.loggedIn"
           tag="li"
-          to="/profile"
+          to="/logout"
+          class="nav-link"
+          @click="logoutUser()"
+        >
+          Logout
+        </b-link>
+        <b-link
+          v-if="$auth.loggedIn == false"
+          tag="li"
+          to="/register"
           class="nav-link"
         >
-          <div v-if="$auth.loggedIn">
-            <a>{{ $auth.user.email }}</a>
-          </div>
-        </nuxt-link>
-        <nuxt-link v-else tag="li" to="/login" class="nav-link">
-          <a>Login</a>
-        </nuxt-link>
-        <nuxt-link tag="li" to="/logout" class="nav-link">
-          <a @click="logoutUser()">Logout</a>
-        </nuxt-link>
-        <nuxt-link tag="li" to="/register" class="nav-link">
-          <a>Register</a>
-        </nuxt-link>
+          Register
+        </b-link>
       </ul>
     </nav>
   </header>
@@ -37,6 +37,7 @@ export default {
   methods: {
     async logoutUser() {
       try {
+        console.log("Logging out")
         await this.$auth.logout()
       } catch (error) {
         console.log(error)
@@ -71,6 +72,10 @@ export default {
 }
 
 .nav-link {
+  display: block;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -83,15 +88,9 @@ export default {
   border-bottom: 3px solid white;
 }
 
-.nav-link a {
-  display: block;
-  text-decoration: none;
-  color: white;
-}
-
-.nav-link a:hover,
-.nav-link a:active,
-.nav-link.nuxt-link-exact-active a {
+.nav-link:hover,
+.nav-link:active,
+.nav-link.nuxt-link-exact-active {
   color: white;
 }
 </style>

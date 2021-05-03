@@ -31,20 +31,6 @@
           </b-form>
         </div>
         <hr />
-        <b-form ref="todoform" inline>
-          <b-form-group label-for="idea" invalid-feedback="Idea is required">
-            <label class="sr-only" for="idea">Idea</label>
-
-            <b-input-group prepend="Idea" class="mb-2 mr-sm-2 mb-sm-0">
-              <b-input
-                id="idea"
-                v-model="idea"
-                placeholder="A good next step"
-              />
-            </b-input-group>
-          </b-form-group>
-          <b-button @click="saveIdea(taskId, idea)">Add</b-button>
-        </b-form>
       </template>
     </b-modal>
   </div>
