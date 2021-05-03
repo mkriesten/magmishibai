@@ -33,8 +33,8 @@ export default {
   data() {
     return {
       loginData: {
-        email: "",
-        password: "",
+        email: "markus.kriesten@telekom.de",
+        password: "password",
       },
     }
   },

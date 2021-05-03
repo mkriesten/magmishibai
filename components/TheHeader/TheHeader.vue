@@ -21,10 +21,10 @@
         <nuxt-link v-else tag="li" to="/login" class="nav-link">
           <a>Login</a>
         </nuxt-link>
-        <nuxt-link v-if="$auth.loggedIn" tag="li" to="/login" class="nav-link">
+        <nuxt-link tag="li" to="/logout" class="nav-link">
           <a @click="logoutUser()">Logout</a>
         </nuxt-link>
-        <nuxt-link v-else tag="li" to="/register" class="nav-link">
+        <nuxt-link tag="li" to="/register" class="nav-link">
           <a>Register</a>
         </nuxt-link>
       </ul>
@@ -38,7 +38,6 @@ export default {
     async logoutUser() {
       try {
         await this.$auth.logout()
-        this.$router.push("/login")
       } catch (error) {
         console.log(error)
       }

@@ -88,7 +88,8 @@ module.exports = {
             method: "post",
             propertyName: "data.token",
           },
-          logout: { url: "/users/logout", method: "post" },
+          // logout: { url: "/users/logout", method: "post" },
+          logout: false,
           user: {
             url: "/users/profile",
             method: "get",
