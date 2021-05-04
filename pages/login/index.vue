@@ -2,6 +2,7 @@
   <b-container>
     <b-row>
       <b-col class="mt-5">
+        <TheErrorAlert :message="errorMessage" :error="loginError" />
         <h3>Please log in to proceed</h3>
         <b-form>
           <b-form-group label="E-Mail" label-for="username">
@@ -29,13 +30,19 @@
 </template>
 
 <script>
+import TheErrorAlert from "@/components/TheErrorAlert/TheErrorAlert"
 export default {
+  components: {
+    TheErrorAlert,
+  },
   data() {
     return {
       loginData: {
-        email: "markus.kriesten@telekom.de",
-        password: "password",
+        email: "",
+        password: "",
       },
+      loginError: false,
+      errorMessage: "Login attempt failed. Please check username and password.",
     }
   },
   methods: {
@@ -48,6 +55,7 @@ export default {
         this.$router.push("/")
         console.log(response)
       } catch (error) {
+        this.loginError = true
         console.log(error)
       }
     },
