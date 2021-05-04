@@ -2,7 +2,9 @@
   <b-container>
     <b-row>
       <b-col class="mt-5">
-        <TheErrorAlert :message="errorMessage" :error="loginError" />
+        <b-alert v-model="loginError" variant="danger" fade dismissible
+          >Login failed. Wrong username or password.</b-alert
+        >
         <h3>Please log in to proceed</h3>
         <b-form>
           <b-form-group label="E-Mail" label-for="username">
@@ -30,11 +32,7 @@
 </template>
 
 <script>
-import TheErrorAlert from "@/components/TheErrorAlert/TheErrorAlert"
 export default {
-  components: {
-    TheErrorAlert,
-  },
   data() {
     return {
       loginData: {
@@ -42,7 +40,6 @@ export default {
         password: "",
       },
       loginError: false,
-      errorMessage: "Login attempt failed. Please check username and password.",
     }
   },
   methods: {
