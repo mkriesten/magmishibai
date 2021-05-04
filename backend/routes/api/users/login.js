@@ -8,7 +8,7 @@ const config = require("../../../config")
 router.post("/", async (req, res) => {
   try {
     let user = await User.findOne({
-      email: req.body.email,
+      email: req.body.email.trim(),
     })
     if (user) {
       let isUserAuthenticated = user.validatePassword(
@@ -32,13 +32,13 @@ router.post("/", async (req, res) => {
       } else {
         res.status(400).json({
           status: 400,
-          message: "Password is incorrect",
+          message: "Username or password is incorrect",
         })
       }
     } else {
       res.status(400).json({
         status: 400,
-        message: "No account exist",
+        message: "Specified account does not exist",
       })
     }
   } catch (err) {
