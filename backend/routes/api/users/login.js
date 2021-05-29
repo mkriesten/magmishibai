@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
           {
             id: user._id,
           },
-          config.secret,
+          config.jwt.secret,
           {
             expiresIn: "10d",
           }

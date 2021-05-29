@@ -4,6 +4,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 const morgan = require("morgan")
+const config = require("./config")
 const taskCrud = require("./routes/api/tasks/crud")
 const users = require("./routes/api/users")
 const tasks = require("./mock")
@@ -26,11 +27,21 @@ app.use("/users", users)
 app.use(morgan("dev"))
 
 mongoose.set("debug", true)
-mongoose.connect("mongodb://localhost:27017/tasks", {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-})
+mongoose.connect(
+  "mongodb+srv://" +
+    config.mongodb.user +
+    ":" +
+    config.mongodb.pass +
+    "@" +
+    config.mongodb.url +
+    "/" +
+    config.mongodb.database,
+  {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  }
+)
 
 const db = mongoose.connection
 db.on("error", console.error.bind(console, "Connection Error"))

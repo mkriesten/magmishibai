@@ -6,7 +6,7 @@ const _ = require("lodash")
 // let verifyToken = (token, next) => {
 let verifyToken = (token) => {
   try {
-    var decoded = jwt.verify(token, config.secret)
+    var decoded = jwt.verify(token, config.jwt.secret)
     return { ...decoded, expired: false }
   } catch (err) {
     if (err) {
@@ -43,7 +43,7 @@ let tokenValidation = async (req, res, next) => {
           {
             id: user._id,
           },
-          config.secret,
+          config.jwt.secret,
           {
             expiresIn: "20s",
           }

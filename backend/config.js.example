@@ -1,0 +1,12 @@
+let config = {
+  jwt: {
+    secret: "change this please !",
+  },
+  mongodb: {
+    user: "mongoDBuseb",
+    pass: "mongoDBpass",
+    url: "cluster.url.mongodb.net",
+    database: "myDBcollection",
+  },
+}
+module.exports = config
