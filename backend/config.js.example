@@ -3,10 +3,10 @@ let config = {
     secret: "change this please !",
   },
   mongodb: {
-    user: "mongoDBuseb",
-    pass: "mongoDBpass",
-    url: "cluster.url.mongodb.net",
-    database: "myDBcollection",
+    user: process.env.DBUSER,
+    pass: process.env.DBPASS,
+    url: process.env.DBURL,
+    database: process.env.COLNAME,
   },
 }
 module.exports = config
