@@ -21,7 +21,7 @@
     "bootstrap-vue": "^2.21.2",
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "nuxt": "^2.15.4",
     "shortid": "^2.2.16",
     "uuid": "^8.3.2"
